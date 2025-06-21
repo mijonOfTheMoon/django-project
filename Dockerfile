@@ -31,4 +31,6 @@ COPY --from=base /usr/local/lib/python3.8/site-packages/ /usr/local/lib/python3.
 COPY --from=base /usr/local/bin/ /usr/local/bin/
 COPY . .
 
+RUN python3 manage.py collectstatic --noinput
+
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "portfolio.wsgi:application"]
