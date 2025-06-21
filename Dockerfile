@@ -8,7 +8,7 @@ RUN apk add --update --virtual .build-deps \
     postgresql-dev \
     python3-dev \
     libpq-dev\
-    libjpeg \
+    jpeg-dev \
     zlib-dev
 
 WORKDIR /app
