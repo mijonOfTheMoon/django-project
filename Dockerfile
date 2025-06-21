@@ -22,10 +22,10 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 RUN apk add --update --no-cache libpq-dev
-RUN python3 -m pip install Pillow
 
 COPY --from=base /usr/local/lib/python3.8/site-packages/ /usr/local/lib/python3.8/site-packages/
 COPY --from=base /usr/local/bin/ /usr/local/bin/
 COPY . .
 
+RUN python3 -m pip install Pillow
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "portfolio.wsgi:application"]
