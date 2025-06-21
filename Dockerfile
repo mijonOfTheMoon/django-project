@@ -6,6 +6,7 @@ ENV PYTHONUNBUFFERED=1
 RUN apk add --update --virtual .build-deps \
     build-base \
     python3-dev \
+    libpq-dev \
     jpeg-dev \
     zlib-dev
 RUN pip install --upgrade pip
@@ -21,7 +22,6 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-RUN apk add --update libpq
 COPY --from=base /usr/local/lib/python3.8/site-packages/ /usr/local/lib/python3.8/site-packages/
 COPY --from=base /usr/local/bin/ /usr/local/bin/
 COPY . .
