@@ -3,6 +3,12 @@ FROM python:3.8.20-alpine3.20 AS bulider
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
+RUN apk add --update --virtual .build-deps \
+    build-base \
+    postgresql-dev \
+    python3-dev \
+    libpq
+
 WORKDIR /app
 
 RUN pip install --upgrade pip
