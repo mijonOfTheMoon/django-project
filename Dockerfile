@@ -1,4 +1,4 @@
-FROM pyhton:3.8.20-alpine3.20 AS bulider
+FROM python:3.8.20-alpine3.20 AS bulider
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1 
