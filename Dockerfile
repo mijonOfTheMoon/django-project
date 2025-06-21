@@ -14,7 +14,6 @@ RUN pip install --upgrade pip
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir Pillow
 
 FROM python:3.8-alpine3.20
 
@@ -23,6 +22,8 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 RUN apk add --update --no-cache libpq-dev
+RUN python3 -m pip install Pillow
+
 COPY --from=base /usr/local/lib/python3.8/site-packages/ /usr/local/lib/python3.8/site-packages/
 COPY --from=base /usr/local/bin/ /usr/local/bin/
 COPY . .
