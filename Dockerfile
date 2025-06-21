@@ -16,6 +16,10 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 FROM python:3.8-alpine3.20
+RUN apk add --update --no-cache \
+    libpq \
+    jpeg \
+    zlib
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
@@ -27,5 +31,4 @@ COPY --from=base /usr/local/lib/python3.8/site-packages/ /usr/local/lib/python3.
 COPY --from=base /usr/local/bin/ /usr/local/bin/
 COPY . .
 
-RUN python3 -m pip install Pillow
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "portfolio.wsgi:application"]
